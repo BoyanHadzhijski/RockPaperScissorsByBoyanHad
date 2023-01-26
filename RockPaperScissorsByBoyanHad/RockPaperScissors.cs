@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace RockPaperScissorsByBoyanHad
 {
@@ -9,6 +10,9 @@ namespace RockPaperScissorsByBoyanHad
             const string rock = "Rock";
             const string paper = "Paper";
             const string scissors = "Scisssors";
+
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
 
             Console.WriteLine("Choose [r]ock, [p]aper or [s]cisssors: ");
             string inputPlayerMove = Console.ReadLine();
@@ -31,9 +35,14 @@ namespace RockPaperScissorsByBoyanHad
                 return;
             }
 
+            Console.ForegroundColor = ConsoleColor.Blue;
+
             Random random = new Random();
             int computerRandomNumber = random.Next(1, 4);
             string computerMove = "";
+            int countHumanWins = 0;
+            int countCompWins = 0;
+            int countDraws = 0;
 
             switch (computerRandomNumber)
             {
@@ -49,17 +58,38 @@ namespace RockPaperScissorsByBoyanHad
                 (inputPlayerMove == scissors && computerMove == paper))
             {
                 Console.WriteLine("You win.");
+                countHumanWins++;
             }
             else if ((inputPlayerMove == rock && computerMove == paper) ||
                 (inputPlayerMove == paper && computerMove == scissors) || 
                 (inputPlayerMove == scissors && computerMove == rock))
             {
                 Console.WriteLine("You lose.");
+                countCompWins++;
             }
             else
             {
                 Console.WriteLine("The game was a draw.");
+                countDraws++;
             }
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Type [yes] to Play Again or [no] to quit:");
+            string type = Console.ReadLine();
+
+            if (type == "yes")
+            {
+              ;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("Thank you for playing!");
+            }
+            Console.WriteLine($"Computer Win Games:{countCompWins}---Human Win Games:{countHumanWins}---Draw Games:{countDraws}");
+
+            Console.ForegroundColor = ConsoleColor.White;
+
         }
     }
 }
